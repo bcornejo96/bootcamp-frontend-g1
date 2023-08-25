@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = [
-    {
+   /* {
         "id": 1,
         "title": "iPhone 9",
         "description": "An apple mobile which is nothing like apple",
@@ -52,7 +52,7 @@ const initialState = [
         "images": [
         "https://i.dummyjson.com/data/products/3/1.jpg"
         ]
-        }
+        }*/
 
 ]
 
@@ -60,8 +60,24 @@ export const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
+        addProductToCart: (state, action) => {
+            const newProduct = action.payload
+
+            return [...state, newProduct]
+        },
+
+        removeProductFromCart: (state, action) => {
+            const id = action.payload
+
+            return state.filter(product => product.id !== id)
+        }
 
     }
 })
 
 export default cartSlice.reducer
+
+export const {
+    addProductToCart,
+    removeProductFromCart
+} = cartSlice.actions
